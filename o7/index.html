@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/faviconfavicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/img/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+    <title>o7 - ExDominion</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendor/device-mockups/device-mockups.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+
+    <!-- Theme CSS -->
+    <link href="/css/new-age.css" rel="stylesheet">
+	<link href="/css/main.css" rel="stylesheet">
+	
+	<style>
+		section {
+			padding:0px;
+		}
+		
+		body {
+			background-image: url("../img/o7.jpg");
+			background-size: cover;
+			background-position: center;
+			font-size:22px;
+			color:white;
+			font-weight:bold;
+			background-attachment: fixed;
+		}
+	</style>
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<section id="o7">
+	</section>
+	<section id="endOfPage"></section>
+    <!-- jQuery -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+		
+	<script>
+		var panel = $("#o7");
+		window.setInterval(function(){
+		  addWave();
+		}, 10);
+		
+		function addWave() {
+			var ran = getRandomInt(1, 200);
+			if (ran != 1){
+				panel.append("o7 ");
+			} else {
+				panel.append("7o ");
+			}
+			$(document).scrollTop($(document).height());
+		}
+		
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min)) + min;
+		}
+	</script>
+</body>
+
+</html>

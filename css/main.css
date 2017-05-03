@@ -1,0 +1,87 @@
+/* Yellow #FFB540 */
+
+header {
+    background: none;
+}
+
+header video {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover;
+}
+
+
+/*****************************************************
+				FONTS
+******************************************************/
+
+p { 
+	margin-bottom:10px;
+}
+
+ul li, ol li {
+	font-size:18px;
+}
+
+p.small {
+	margin-bottom:0px;
+}
+
+/*****************************************************
+				SECTIONS
+******************************************************/
+
+section .section-heading {
+  margin-bottom: 60px;
+}
+section .section-heading h2 {
+  margin-top: 0;
+}
+section .section-heading p {
+  margin-bottom: 0;
+}
+section.grey {
+	background-color:#f5f5f5;
+}
+
+/*****************************************************
+				CHARACTER PANEL
+******************************************************/
+
+.character-panel h3 {
+	font-weight:bold;
+	text-align:center;
+}
+
+.character-panel img {
+	margin: 0 auto;
+}
+
+/*****************************************************
+				NAV
+******************************************************/
+
+.navbar-default .nav > li.active > a, .navbar-default .nav > li.active > a:focus {
+	font-weight:bold;
+}
+
+/*****************************************************
+				SHIPPING TOOL
+******************************************************/
+
+a.glyphicon:hover,
+a.glyphicon:focus,
+a.glyphicon:active {
+	text-decoration: none;
+}
