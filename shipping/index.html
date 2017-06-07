@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,7 +57,6 @@
 </head>
 
 <body id="page-top">
-
 	<section>
 	    <div class="container">
             <div class="row">
@@ -111,14 +110,14 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="volume">Total Volume of Contract: <span class="form-text text-muted">(m3)</span> <a href="#volumeHelp" data-toggle="collapse" class="text-info glyphicon glyphicon-question-sign"></a></label>
-												<input type="number" class="form-control" id="volume" placeholder="Max 320,000 m3" min="0" max="320000" name="volume">
+												<input type="text" class="form-control" data-type="number" id="volume" placeholder="Max 320,000 m3" min="0" max="320000" name="volume">
 												<span id="volumeHelp" class="help-block collapse">Contracts cannot exceed a maximum of 320,000 m3. Please split contracts up to accomdate this.</span>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="collateral">Contract Collateral: <span class="form-text text-muted">(ISK)</span> <a href="#collateralHelp" data-toggle="collapse" class="text-info glyphicon glyphicon-question-sign"></a></label>
-												<input type="number" class="form-control" id="collateral" placeholder="1,500,000,000" min="0" name="collateral"> 
+												<input type="text" class="form-control" data-type="number" id="collateral" placeholder="1,500,000,000" min="0" name="collateral"> 
 												<span id="collateralHelp" class="help-block collapse">Contracts that exceed 1.5b ISK in collateral will be charged an extra 1m per 100m.</span>
 											</div>
 										</div>
@@ -137,51 +136,61 @@
 						</div>
 						<div class="panel">
 							<div class="panel-body">
-								<div id="details-incomplete">
-									<p class="text-muted text-center">This area will populate once all contract options are completed</p>
-								</div>
-								<div id="details" style="display:none;">
-									<div class="row">
-										<div class="col-sm-6">
-											<p>Contract to:</p>
-										</div>
-										<div class="col-sm-6 text-right">
-											<p>ExDominion [EXDOM]</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<p>Total Contract Payment:
-												<p class="text-danger small">- Volume Charge (320,000 m3)</p>
-												<p class="text-danger small">- Exceeding Collateral (500m)</p>
-												<p class="text-danger small">- Urgent Delievery</p>
-											</p>
-										</div>
-										<div class="col-sm-6 text-right">
-											<p>87,000,000
-												<p class="text-danger small">+32,000,000</p>
-												<p class="text-danger small">+5,000,000</p>
-												<p class="text-danger small">+50,000,000</p>
-											</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<p>Days to Expire:</p>
-										</div>
-										<div class="col-sm-6 text-right">
-											<p>1</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<p>Days to Complete:</p>
-										</div>
-										<div class="col-sm-6 text-right">
-											<p>1</p>
-										</div>
-									</div>
-								</div>
+                                <div id="details">
+                                    <div id="details-incomplete">
+                                        <p class="text-muted text-center">This area will populate once all contract options are completed</p>
+                                    </div>
+                                    <div id="details-complete" style="display:none;">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p>Contract to:</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p>ExDominion [EXDOM]</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p style="margin-bottom: 0;">Total Contract Payment:</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p style="margin-bottom: 0;"><span id="contract-totalCharge"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="text-danger small">- Volume Charge (<span id="contract-volume"></span> m3)</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p class="text-danger small">+<span id="contract-volumeCharge"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="text-danger small">- Exceeding Collateral (<span id="contract-collateralOverAmount"></span>)</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p class="text-danger small" style="margin-bottom: 10px;">+<span id="contract-collateralOverCharge"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p>Days to Expire:</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p>1</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p>Days to Complete:</p>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <p>1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -208,46 +217,32 @@
 
     <!-- Theme JavaScript -->
     <script src="/js/new-age.min.js"></script>
-		
-	<script>
-		$(function() {
-		
-			$("form#calculator :input").change(function() {
-				$( "form#calculator" ).submit();
-			});
 
-			$( "form#calculator" ).submit(function( event ) {
-				var fields = formToObjects($(this));
-				var fieldsHasNull = false;
-				var $details = $("#details");
-				var $detailsIncomplete = $("#details-incomplete");
-				
-				$.each(fields, function( i, val ) {
-					if (val == ""){
-						fieldsHasNull = true;
-					}
-				});
-				
-				if (fieldsHasNull) { // All fields not populated
-					$details.fadeOut(500);
-					$detailsIncomplete.fadeIn(500);
-					
-				} else {  // All fields populated
-					$detailsIncomplete.fadeOut(500);
-					$details.fadeIn(500);
-				}
-				
-				event.preventDefault();
-			});
-			
-			function formToObjects(form) {
-				var dataArray = $(form).serializeArray(), fields = {};
-				$(dataArray).each(function(i, field){
-					fields[field.name] = field.value;
-				});
-				
-				return fields;
-			}
+    <!-- Shipping Calc JavaScript -->
+    <script src="/js/shipping-calc.js"></script>
+    
+	<script>
+        $(function () {
+
+            $("#calculator").shippingCalc();
+
+            // Clean up start up scripts
+            $('#details').css('min-height', $('#details-incomplete').height() + "px");
+            $(window).resize(function () {
+                $('#details').css('min-height', $('#details-incomplete').height() + "px");
+            });
+
+
+            $("input[data-type='number']").keyup(function (event) {
+                // skip for arrow keys
+                if (event.which >= 37 && event.which <= 40) {
+                    event.preventDefault();
+                }
+                var $this = $(this);
+                var num = $this.val().replace(/,/gi, "");
+                var num2 = num.split(/(?=(?:\d{3})+$)/).join(",");
+                $this.val(num2);
+            });
 			
 		});
 	</script>

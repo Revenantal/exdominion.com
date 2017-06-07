@@ -85,3 +85,12 @@ a.glyphicon:focus,
 a.glyphicon:active {
 	text-decoration: none;
 }
+
+#details {
+    position:relative;
+}
+
+#details #details-incomplete {
+    position: absolute;
+    width: 100%;
+}

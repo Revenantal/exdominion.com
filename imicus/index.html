@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/faviconfavicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>IMICUS - ExDominion</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendor/device-mockups/device-mockups.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+
+    <!-- Theme CSS -->
+    <link href="/css/new-age.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('img/bg-1.jpg');
+            font-family: "Arial Black", Gadget, sans-serif;
+            text-align: center;
+            color: white;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .imicus {
+            background-image:url('img/imicus.png');
+            background-size:contain;
+            background-repeat:no-repeat;
+            width:900px;
+            height:207px;
+            position:absolute;
+        }
+
+        .totalCount, .addMore {
+            position: absolute;
+            z-index: 9999999999;
+            width: 100%;
+        }
+
+        .totalCount {
+            top: 20px;
+        }
+
+        .addMore {
+            bottom: 20px;
+            cursor:pointer;
+            left:0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="space" style="width:100%; height:100%;"></div>
+    <div class="totalCount"></div>
+    <a class="addMore">ADD MORE</a>
+    <audio id="music"></audio>
+
+    <!-- jQuery -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+            var minSize = 0.3;
+            var maxSize = 1;
+            var minSpeed = 1000;
+            var maxSpeed = 20000;
+            var $bg = $('#space');
+            var $totalDisplay = $('.totalCount');
+            var songs = ['audio/Chariots of Fire Theme.mp3', 'audio/Flight Of The Bumblebee.mp3', 'audio/Pulp Fiction Misirlou.mp3', 'audio/Ride Of The Valkyries.mp3', 'audio/Sabre Dance.mp3', 'audio/Can Can Music.mp3']
+            var backgrounds = ['img/bg-1.jpg', 'img/bg-2.jpg', 'img/bg-3.jpg', 'img/bg-4.jpg', 'img/bg-5.jpg'];
+            var $music = $('#music');
+
+            var startCount = 50;
+            var totalCount = 0;
+
+            //$music.on("ended", playNewRandomSong());
+            music = document.getElementById('music');
+            playNewRandomSong();
+            music.addEventListener('ended', function () {
+                playNewRandomSong();
+            });
+
+            $('body').css({ 'background-image': 'url(' + backgrounds[ranIntInRange(0, backgrounds.length - 1)] + ')' });
+
+            for (i = 0; i < startCount; i++) {
+                generateShip('imicus', true);
+            }
+
+            $(".addMore").click(function (e) {
+                e.preventDefault();
+                generateShip('imicus', true);
+            });
+
+            function startUp() {
+                
+                
+            }
+
+            function generateShip(shipClass, isNew) {
+
+                if (isNew) {
+                    totalCount++;
+                    $totalDisplay.text("TOTAL IMICUS: " + totalCount);
+                }
+
+                var $ship = $("<div class='" + shipClass + "'></div>").appendTo($bg);
+
+                var size = ranFloatInRange(minSize, maxSize);
+                var speed = ranIntInRange(minSpeed, maxSpeed);
+                var topPosition = ranIntInRange(-($ship.height() / 2), $bg.height() - ($ship.height()/2));
+
+                $ship.css({
+                    '-webkit-transform': 'scale(' + size + ')',
+                    '-moz-transform': 'scale(' + size + ')',
+                    '-ms-transform': 'scale(' + size + ')',
+                    '-o-transform': 'scale(' + size + ')',
+                    'transform': 'scale(' + size + ')',
+                    'z-index': Math.floor(size*100),
+                    'top': topPosition + 'px',
+                    'left': '100%'
+                });
+
+
+                $ship.animate({
+                    left: -$bg.width(),
+                }, speed, function () {
+                    $ship.remove();
+                    generateShip(shipClass, false);
+                });
+            }
+
+            function ranFloatInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            function ranIntInRange(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
+            function playNewRandomSong() {
+                console.log("Song over");
+                var curSong = $music.attr("src");
+                var newSong = songs[ranIntInRange(0, songs.length-1)];
+                while (curSong == newSong) {
+                    newSong = songs[ranIntInRange(0, songs.length-1)];
+                }
+
+                $music.attr("src", newSong);
+                $music.trigger("play");
+            }
+        });
+    </script>
+</body>
+
+</html>
