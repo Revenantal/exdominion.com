@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,7 +40,6 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="/vendor/device-mockups/device-mockups.min.css">
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 
     <!-- Theme CSS -->
@@ -53,7 +52,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
+        ga('create', 'UA-69129860-3', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body id="page-top">
@@ -80,6 +90,9 @@
                     <li>
                         <a class="page-scroll" href="#members">Members</a>
                     </li>
+                    <li>
+                        <a target="_blank" href="https://zkillboard.com/corporation/98427311/">Killboards</a>
+                    </li>
 					<li>
                         <a class="page-scroll" href="#joining">Joining</a>
                     </li>
@@ -91,7 +104,7 @@
     </nav>
 
     <header>
-		<video playsinline autoplay muted loop poster="/img/bg-pattern.jpg">
+		<video playsinline muted loop id="banner">
 			<source src="/video/keepstar.mp4" type="video/mp4">
 		</video>
         <div class="container">
@@ -354,16 +367,16 @@
 							</div>
 							<div class="col-md-6">
 								<div class="col-md-6 character-panel">
-									<img src="https://image.eveonline.com/Character/93100746_256.jpg" class="img-responsive">
-									<h3>Draven Ozran</h3>
+									<img src="https://image.eveonline.com/Character/97098614_256.jpg" class="img-responsive">
+									<h3>Johannes Ipsum<br /><small>Industrial Lead</small></h3>
 								</div>
 								<div class="col-md-6 character-panel">
 									<img src="https://image.eveonline.com/Character/1336468925_256.jpg" class="img-responsive">
-									<h3>Yipcool</h3>
+									<h3>Yipcool<br /><small>Voted Most Likely Spy</small></h3>
 								</div>
 								<div class="col-md-12 character-panel">
 									<img src="https://image.eveonline.com/Character/90560387_256.jpg" class="img-responsive">
-									<h3>Francis Raven</h3>
+									<h3>Francis Raven<br /><small>CEO</small></h3>
 								</div>
 							</div>
 						</div>
@@ -376,7 +389,7 @@
     <footer>
         <div class="container">
             <p>&copy; <script>document.write(new Date().getFullYear());</script> ExDominion. All Rights Reserved.</p>
-			<p>Special thanks to <a href="https://www.youtube.com/user/speedytuning1" target="_blank">stars gaming</a> on youtube for providing the video banner!.</p>
+			<p>Special thanks to <a href="https://www.youtube.com/user/speedytuning1" target="_blank">stars gaming</a> on youtube for providing the video banner!</p>
 			<p><small>This material is used with limited permission of CCP Games hf. No official affiliation or endorsement by CCP Games hf is stated or implied.</small></p>
         </div>
     </footer>
@@ -395,7 +408,23 @@
 
 	<!-- Slick JavaScript -->
 	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-		
+
+    <script>
+        $(function () {
+            // onload
+            if (document.body.clientWidth >= 767) {
+                $('video').attr('autoplay', true);
+            }
+            $(window).resize(function () {
+                if (document.body.clientWidth >= 767) {
+                    $('video').attr('autoplay', true);
+                    $('video').get(0).play();
+                }
+            });
+        });
+    </script>
+
+
 	<script>
 		$(function() {
 			var characters = [];

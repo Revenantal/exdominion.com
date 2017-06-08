@@ -151,7 +151,6 @@ header {
   width: 100%;
   min-height: auto;
   overflow: hidden;
-  background: url(../img/bg-pattern.jpg);
   background-size:cover;
   color: white;
 }
