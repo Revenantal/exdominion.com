@@ -25,7 +25,7 @@
     <meta name="msapplication-TileImage" content="https://imageserver.eveonline.com/Corporation/98427311_256.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>IMICUS - ExDominion</title>
+    <title>DREADBOMB - ExDominion</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         }
 
         body {
-            background-image: url('img/bg-1.jpg');
+            background-color:black;
             font-family: "Arial Black", Gadget, sans-serif;
             text-align: center;
             color: white;
@@ -70,30 +70,16 @@
             background-repeat: no-repeat;
         }
 
-        .imicus {
-            background-image:url('img/imicus.png');
-            background-size:contain;
-            background-repeat:no-repeat;
-            width:900px;
-            height:207px;
-            position:absolute;
-        }
-
-        .totalCount, .addMore {
+        .ship {
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 256px;
+            height: 256px;
             position: absolute;
-            z-index: 9999999999;
-            width: 100%;
         }
-
-        .totalCount {
-            top: 20px;
-        }
-
-        .addMore {
-            bottom: 20px;
-            cursor:pointer;
-            left:0;
-        }
+            .ship.retriever {
+                background-image: url(https://imageserver.eveonline.com/Render/17478_512.png);
+            }
     </style>
 
     <script>
@@ -118,59 +104,112 @@
 
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="js/ship.js"></script>
+    <script src="../vendor/sprintf/sprintf.min.js"></script>
+    <script>
+        // MAIN STORY BOARD
+        /*
+        1. Spawn mining ship
+        2. move mining ship to middle
+        3. active mining laser
+        4. active cyno
+        5. spawn dreads/start music/dance dreads
+        
+        */
+
+        // INIT
+        var $background = $('#space');
+
+        var newShip = new Ship('https://imageserver.eveonline.com/Render/17478_512.png', 512, 512, 0.1, 1);
+        $(newShip.SpawnRandom()).appendTo($background);
+        // 1. Spawn mining ship
+        
+
+
+
+
+
+        function spawnMiner($background) {
+            var $ship = $("<div class='ship retriever'></div>").appendTo($background);
+            var topPosition = ($background.height() / 2) + (-$ship.height() / 2)  ;
+
+            $ship.css({
+                'top': topPosition + 'px',
+                'left': '100%'
+            });
+
+
+            $ship.animate({
+                left: '50%'
+            }, 5000);
+
+            return ($ship);
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script>
         $(function () {
 
             var minSize = 0.3;
             var maxSize = 1;
-            var minSpeed = 1000;
-            var maxSpeed = 20000;
             var $bg = $('#space');
-            var $totalDisplay = $('.totalCount');
-            var songs = ['audio/Chariots of Fire Theme.mp3', 'audio/Flight Of The Bumblebee.mp3', 'audio/Pulp Fiction Misirlou.mp3', 'audio/Ride Of The Valkyries.mp3', 'audio/Sabre Dance.mp3', 'audio/Can Can Music.mp3']
-            var backgrounds = ['img/bg-1.jpg', 'img/bg-2.jpg', 'img/bg-3.jpg', 'img/bg-4.jpg', 'img/bg-5.jpg'];
-            var $music = $('#music');
 
             var startCount = 50;
-            var totalCount = 0;
 
-            //$music.on("ended", playNewRandomSong());
-            music = document.getElementById('music');
-            playNewRandomSong();
-            music.addEventListener('ended', function () {
-                playNewRandomSong();
-            });
-
-            $('body').css({ 'background-image': 'url(' + backgrounds[ranIntInRange(0, backgrounds.length - 1)] + ')' });
-
+            // No delay spawn
+            /*
             for (i = 0; i < startCount; i++) {
-                generateShip('imicus', true);
+                spawnDread(minSize, maxSize);
             }
+            */
 
-            $(".addMore").click(function (e) {
-                e.preventDefault();
-                generateShip('imicus', true);
-            });
+   
+            // Delayed Spawn
+            (function loop(i) {
+                setTimeout(function () {
+                  //  spawnDread(minSize, maxSize)
+                    if (--i) loop(i); // iteration counter
+                }, 100) // delay
+            })(50); // iterations count 
 
-            function startUp() {
-                
-                
-            }
 
-            function generateShip(shipClass, isNew) {
 
-                if (isNew) {
-                    totalCount++;
-                    $totalDisplay.text("TOTAL IMICUS: " + totalCount);
-                }
 
-                var $ship = $("<div class='" + shipClass + "'></div>").appendTo($bg);
+
+
+            function spawnDread(minSize, maxSize) {
+                var dreads = ['https://imageserver.eveonline.com/Render/19722_512.png',
+                    'https://imageserver.eveonline.com/Render/19720_512.png',
+                    'https://imageserver.eveonline.com/Render/19724_512.png',
+                    'https://imageserver.eveonline.com/Render/19726_512.png'];
+
+                var dreadImage = dreads[ranIntInRange(0,dreads.length - 1)];
+                var $dread = $("<div class='ship'></div>").appendTo($bg);
 
                 var size = ranFloatInRange(minSize, maxSize);
-                var speed = ranIntInRange(minSpeed, maxSpeed);
-                var topPosition = ranIntInRange(-($ship.height() / 2), $bg.height() - ($ship.height()/2));
+                var topPosition = ranIntInRange(-($dread.height() / 2), $bg.height() - ($dread.height() / 2));
+                var leftPosition = ranIntInRange(-($dread.width() / 2), $bg.width() - ($dread.width() / 2));
 
-                $ship.css({
+                $dread.css({
+                    'background-image': 'url(' + dreadImage + ')',
                     '-webkit-transform': 'scale(' + size + ')',
                     '-moz-transform': 'scale(' + size + ')',
                     '-ms-transform': 'scale(' + size + ')',
@@ -178,16 +217,16 @@
                     'transform': 'scale(' + size + ')',
                     'z-index': Math.floor(size*100),
                     'top': topPosition + 'px',
-                    'left': '100%'
+                    'left': leftPosition + 'px'
                 });
 
-
-                $ship.animate({
+                /*
+                $dread.animate({
                     left: -$bg.width(),
                 }, speed, function () {
                     $ship.remove();
                     generateShip(shipClass, false);
-                });
+                });*/
             }
 
             function ranFloatInRange(min, max) {
@@ -196,18 +235,6 @@
 
             function ranIntInRange(min, max) {
                 return Math.floor(Math.random() * (max - min + 1) + min);
-            }
-
-            function playNewRandomSong() {
-                console.log("Song over");
-                var curSong = $music.attr("src");
-                var newSong = songs[ranIntInRange(0, songs.length-1)];
-                while (curSong == newSong) {
-                    newSong = songs[ranIntInRange(0, songs.length-1)];
-                }
-
-                $music.attr("src", newSong);
-                $music.trigger("play");
             }
         });
     </script>
