@@ -1,11 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\imicus\\audio",
-    "\\imicus\\img",
-    "\\o7",
-    "\\vendor"
+    "\\dreadbomb",
+    "\\dreadbomb\\audio",
+    "\\dreadbomb\\img",
+    "\\dreadbomb\\js",
+    "\\imicus",
+    "\\js",
+    "\\shipping",
+    "\\vendor",
+    "\\vendor\\sprintf"
   ],
-  "SelectedNode": "\\vendor\\font-awesome",
+  "SelectedNode": "\\dreadbomb\\js\\ship.js",
   "PreviewInSolutionExplorer": false
 }
