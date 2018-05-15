@@ -77,6 +77,12 @@ section.grey {
 	margin: 0 auto;
 }
 
+.character-panel small {
+    line-height: 1;
+    display: block;
+    margin-bottom:20px;
+}
+
 /*****************************************************
 				NAV
 ******************************************************/
