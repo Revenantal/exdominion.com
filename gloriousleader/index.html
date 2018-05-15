@@ -1,0 +1,749 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="apple-touch-icon" sizes="57x57" href="https://imageserver.eveonline.com/Corporation/98427311_64.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://imageserver.eveonline.com/Corporation/98427311_64.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://imageserver.eveonline.com/Corporation/98427311_128.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://imageserver.eveonline.com/Corporation/98427311_128.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://imageserver.eveonline.com/Corporation/98427311_128.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://imageserver.eveonline.com/Corporation/98427311_128.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<link rel="manifest" href="/img/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://imageserver.eveonline.com/Corporation/98427311_256.png">
+	<meta name="theme-color" content="#ffffff">
+
+    <title>ExDominion - Glorious Leader</title>
+    <link rel="stylesheet" href="css/glorious.css">
+    <script src="howler.min.js">
+        /* howler.js
+		Copyright (c) 2013-2017 James Simpson and GoldFire Studios, Inc.
+		Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and / or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+		The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
+		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+		*/
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108967479-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-108967479-1');
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-69129860-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+	
+</head>
+
+<body>
+    <div>
+        <canvas id="gc" class="noPointer" width="1024" height="512"></canvas>
+    </div>
+    <div id="hiddenDiv" style="display:none;">
+        <img id="shipaa" src='img/fravenImicus.png' height="64" width="64">
+    </div>
+    <div style="font-size:10px">
+        <b> "© 2017 CCP hf. All rights reserved. "EVE ", "EVE Online ", "CCP ", and all related logos and images are trademarks or registered trademarks of CCP hf."</b>
+		Made by frpol
+    </div>
+
+
+    <script>
+
+        //*******************************************************
+        // YIPCOOL GET THE FUCK OUT OF MY CODE!!!
+        //*******************************************************
+
+        //init function istantiate the GameFramework object
+        //canvas and canvas context object
+        var canv = document.getElementById("gc");
+        ctx = canv.getContext("2d");
+
+        window.onload = function init() {
+            var game = new GameFramework();
+            game.start();
+        };
+
+        //game start here with the GameFramework
+        // start new game with 
+        var GameFramework = function() {
+            var enemyShipsType = ['img/t3_no_background_legion.png', 'img/t3_no_background_tengu.png',
+                'img/t3_no_background_loki.png', 'img/t3_no_background_proteus.png'
+            ];
+            var enemyAmmo = ['img/13_64_16_left.png', 'img/13_64_4_left.png',
+                'img/13_64_12_left.png', 'img/13_64_8_left.png'
+            ];
+
+            var friendlyShip = 'img/36_64_13.png';
+            var friendlyAmmo = ['img/13_64_16_right.png', 'img/13_64_4_right.png',
+                'img/13_64_12_right.png', 'img/13_64_8_right.png'
+            ];
+            //not used at the moment
+            /*var friendlyAmmoNamed = {'em':'img/13_64_16_right.png',
+                                    'kn':'img/13_64_4_right.png',
+                                    'ex':'img/13_64_12_right.png',
+                                    'th':'img/13_64_8_right.png'
+                                    };
+             */
+            var friendlyAmmoNamed = function(n, src, w, h) {
+                this.name = n;
+                this.charge = new Image();
+                this.charge.src = src;
+                this.width = w;
+                this.height = h;
+                this.charge.addEventListener('mousedown', ammoSelection, true);
+
+            };
+            var friendlyAmmo2 = [];
+            friendlyAmmo2.push(new friendlyAmmoNamed('em', 'img/13_64_16_right.png', 35, 10));
+            friendlyAmmo2.push(new friendlyAmmoNamed('kn', 'img/13_64_4_right.png', 35, 10));
+            friendlyAmmo2.push(new friendlyAmmoNamed('ex', 'img/13_64_12_right.png', 35, 10));
+            friendlyAmmo2.push(new friendlyAmmoNamed('th', 'img/13_64_8_right.png', 35, 10));
+
+            var Ship = function(h, c, e) {
+                this.hull = new Image();
+                this.hull.src = h;
+                this.charge = new Image();
+                this.charge.src = c;
+                this.explosion = new Image();
+                this.explosion.src = e;
+            };
+            var ships = [];
+            enemyShipsType.forEach(function(element, i) {
+                ships.push(new Ship(element, enemyAmmo[i], 'img/56_64_2.png'))
+            });
+            var mainShip = new function() {
+                //ship starting position and coordinates
+                this.sx = -35; //starting out of canvas
+                this.sy = (canv.height / 2) - 32;
+                this.hull = new Image();
+                this.hull.src = 'img/fravenImicus.png';
+                this.scale = 8; //image size versus screen drawn object. bettern
+                this.width = this.hull.width / this.scale;
+                this.height = this.hull.height / this.scale;
+                this.charge = new Image();
+                this.charge.src = 'img/13_64_16_right.png';
+                this.health = 13;
+                this.maxHealth = 13;
+            };
+            var yipLeve = new function() {
+                this.pic = new Image();
+                this.pic.src = "img/yipLeve.png";
+                this.scale = 8;
+            };
+            var newGame = new function() {
+                this.pic = new Image();
+                this.pic.src = "img/NewGame.png";
+            };
+            var initialBG = new function() {
+                this.pic = new Image();
+                this.pic.src = "img/initial.png";
+            };
+            var sounds = {
+                pewpew: new Howl({
+                    src: ['sounds/Pew_Pew-DKnight556-1379997159.mp3'],
+                    volume: 0.4
+                }),
+                explosion: new Howl({
+                    src: ['sounds/Flashbang-Kibblesbob-899170896.mp3'],
+                    volume: 0.1
+                })
+            };
+
+            var lastEnemyShipTime = new Date().getTime();
+
+            //time based animation variables
+            var now, delta, then;
+            then = new Date().getTime();
+            var calcMoveDistance = function(delta, speed) {
+                return (speed * delta) / 1000;
+            };
+            var calcShootTime = function(delta, rof) {
+                return (rof * delta) / 1000;
+            };
+
+            var gameStates = {
+                mainMenu: 0,
+                intro: 1,
+                fadingIn: 2,
+                running: 3,
+                died: 4,
+                end: 5
+            };
+            var currentState = gameStates.mainMenu; //game current status
+
+            var enemyFleet = [];
+            var ammos = [];
+            var score = 0;
+            var finalScore = 0;
+
+            var sessionStatements = [
+                'Did you see my Plex vault? I think I left it here on the table',
+                'Did you say jump???',
+                'I nearly got him, but...',
+                'The capacitor is now Empty',
+                'I saw the light at the end of the tunnel',
+                'It will take me only 35 jumps',
+                'Send 100M isks to "Fr Pol", I will double and keep them',
+                'That ship was freaking unexpensive',
+                'I am saving my last isks for the barber shop',
+                'Everybody say JUMP!!!! ....JUMP....',
+                'Will Jump for food!!!',
+                'OK THAT`S NO FUN! WHO SCRATCHED MY HULL?!?',
+                'Imicus, Mon Amour!',
+                'The lEve is in the Space'
+            ];
+
+            //HUD and its damages
+            var dmg = function(p) {
+                this.pic = new Image();
+                this.pic.src = p;
+            };
+            var hudDmg = new function() {
+                this.low = [
+                    new dmg('img/hud/lowHeat_0.png'),
+                    new dmg('img/hud/lowHeat_1.png'),
+                    new dmg('img/hud/lowHeat_2.png'),
+                    new dmg('img/hud/lowHeat_3.png'),
+                    new dmg('img/hud/lowHeat_4.png')
+                ];
+                this.med = [
+                    new dmg('img/hud/medHeat_0.png'),
+                    new dmg('img/hud/medHeat_1.png'),
+                    new dmg('img/hud/medHeat_2.png'),
+                    new dmg('img/hud/medHeat_3.png'),
+                    new dmg('img/hud/medHeat_4.png')
+                ];
+                this.high = [
+                    new dmg('img/hud/hiHeat_0.png'),
+                    new dmg('img/hud/hiHeat_1.png'),
+                    new dmg('img/hud/hiHeat_2.png'),
+                    new dmg('img/hud/hiHeat_3.png'),
+                    new dmg('img/hud/hiHeat_4.png')
+                ];
+            };
+            var hud = new function() {
+                this.hud = new Image();
+                this.hud.src = 'img/hud/mainUnderlay_noSpeedo.png';
+                this.dmgDiv = new Image();
+                this.dmgDiv.src = 'img/hud/heatDivider.png';
+                this.skull = new Image();
+                this.skull.src = 'img/hud/4_64_16.png';
+                this.damage = [
+                    [hudDmg.low[0], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[0], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[1], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[2], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[3], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[0], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[1], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[2], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[3], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[4], hudDmg.high[0]],
+                    [hudDmg.low[4], hudDmg.med[4], hudDmg.high[1]],
+                    [hudDmg.low[4], hudDmg.med[4], hudDmg.high[2]],
+                    [hudDmg.low[4], hudDmg.med[4], hudDmg.high[3]],
+                    [hudDmg.low[4], hudDmg.med[4], hudDmg.high[4]]
+                ]
+
+            };
+
+            //scrolling background test
+            var backGRND = new function() {
+                this.background = new Image();
+                this.background.src = 'img/backgroundScroll.png';
+            };
+
+            //loading background
+            var background = new function() {
+                this.pic = new Image();
+                this.pic.src = 'img/background.png'
+            };
+
+            function BackGround() {
+                this.speed = 1;
+                this.width = canv.width;
+                this.height = canv.height;
+                this.pic = backGRND;
+                this.x = 0;
+                this.y = 0;
+                this.context = ctx;
+                this.draw = function() {
+                    this.x -= this.speed;
+                    ctx.drawImage(this.pic.background, this.x, this.y);
+                    ctx.drawImage(this.pic.background, this.width - this.x, this.y);
+                    if (this.x <= -canv.width) {
+                        this.x = 0; //this.width;
+                    };
+                };
+            };
+
+            function EnemyShip(x, y, pic) {
+                this.id = "s" + Math.floor(Math.random() * 100000);
+                this.x = x;
+                this.y = y;
+                this.pic = ships[pic].hull;
+                this.charge = ships[pic].charge;
+                this.explosion = ships[pic].explosion;
+                this.rof = (Math.floor(Math.random() * 10) % 4) + 2;
+                this.maxHealth = (Math.round((Math.random() * 7)) % 7) + 3
+                this.health = this.maxHealth;
+                this.speed = 100;
+                this.exploded = false;
+                this.explode = function() {
+                    this.pic = this.explosion
+                };
+                var that = this;
+                this.lastShoot = new Date().getTime();
+                this.shootNew = function(now) {
+                    if (this.exploded == false) {
+                        if (((now - this.lastShoot) / 1000 >= this.rof)) {
+                            this.shoot();
+                            this.lastShoot = now;
+                        }
+                    }
+                };
+                this.shoot = function() {
+                    addShoot(new Shoot(that.x,
+                        that.y + Math.floor((Math.random() * 100) % 64), -1,
+                        200,
+                        that.charge));
+                };
+            };
+
+            function addEnemy() {
+                //if (currentState == gameStates.running){
+                var sType = Math.floor(Math.random() * 40) % enemyShipsType.length; // index between 0 and enemyShipsType length
+                //var tree = document.getElementById('hiddenDiv');
+                var startY = Math.floor(Math.random() * 1000) % (canv.height - 64)
+                var newEnemyShip = new EnemyShip(canv.width + 16, startY, sType);
+                enemyFleet.push(newEnemyShip);
+                // }
+            };
+
+            function Shoot(x, y, dir, vel, pic) {
+                this.id = "sh" + Math.floor(Math.random() * 100000);
+                this.x = x;
+                this.y = y;
+                this.pic = pic; //pic;
+                this.dir = dir;
+                this.vel = vel;
+                that = this;
+            };
+
+            function addShoot(shoot) {
+                ammos.push(shoot);
+                // console.warn("Ammo pushed: " + shoot.id + " X: " + shoot.x + " Y: " + shoot.y + " vel: " + shoot.vel );
+            };
+
+            function checkContact() {
+                ammos.forEach(function(ammo) {
+                    if ((ammo.dir == -1) && !(ammo === null)) {
+                        //fravenimicus image is h:512 w:272 so adjusting the boundaries to 272/(512/64) [w/(h/current size in game)]
+                        if ((ammo.x >= mainShip.sx && ammo.x <= mainShip.sx + 34) && (ammo.y >= mainShip.sy && ammo.y <= mainShip.sy + 64)) {
+                            console.warn('you got hit....');
+                            ammos.splice(ammos.indexOf(ammo), 1);
+                            ammo = null;
+                            mainShip.health--;
+                            if (mainShip.health == 0) {
+                                died();
+                            }
+                        }
+                    } else {
+                        enemyFleet.forEach(function(enemy) {
+                            //after hit the ammo will be null, so break the loop
+                            if (!(ammo === null)) {
+                                if ((ammo.x >= enemy.x && ammo.x <= enemy.x + 64) &&
+                                    (ammo.y >= enemy.y && ammo.y <= enemy.y + 64)) {
+                                    if (ammo.dir != -1 && enemy.exploded == false) {
+                                        enemy.health--;
+                                        ammos.splice(ammos.indexOf(ammo), 1);
+                                        ammo = null;
+                                        if (enemy.health == 0) {
+                                            enemy.exploded = true;
+                                            enemy.explode(); //testEnemyShip
+                                            sounds.explosion.play(); //explosion sound
+                                            setTimeout(function() {
+                                                enemyFleet.splice(enemyFleet.indexOf(enemy), 1);
+                                                try {
+                                                    score += (enemy.maxHealth * 10000) + Math.floor(Math.random() * 1000);
+                                                    enemy = null;
+                                                } catch (error) {
+                                                    console.info('double hit');
+                                                } finally {;
+                                                }
+                                            }, 500);
+                                        };
+
+                                    };
+                                };
+                            };
+                        });
+                    };
+                });
+            };
+
+            function died() {
+                //window.removeEventListener('keydown',keyPush);
+                canv.removeEventListener('mousemove', mouseMove, false);
+                canv.removeEventListener('mousedown', mouseShoot, false);
+                canv.removeEventListener('mouseleave', mouseLeave, false);
+                // cleaning enemy ships
+                enemyFleet.forEach(function(enemy) {
+                    enemyFleet.splice(enemyFleet.indexOf(enemy), 1);
+                    enemy = null;
+                });
+                // clear ammos from the field
+                ammos.forEach(function(ammoElement) {
+                    ammos.splice(ammos.indexOf(ammoElement), 1);
+                    ammoElement = null;
+                });
+                currentState = gameStates.died;
+            };
+
+            function reset() {
+                newGame.className = 'hidden';
+                enemyFleet = [];
+                ammos = [];
+                score = 0;
+                finalScore = 0;
+                mainShip.sx = -35;
+                mainShip.sy = canv.height / 2;
+                canv.removeEventListener('mousedown', newGameClick, false);
+                mainShip.health = mainShip.maxHealth;
+                currentState = gameStates.intro;
+            };
+
+            function game() {
+                draw();
+                requestAnimationFrame(draw);
+            };
+
+            //draw the game
+            function draw() {
+                ctx.save();
+
+                now = new Date().getTime();
+                delta = now - then;
+
+                switch (currentState) {
+                    case gameStates.mainMenu:
+
+                        ctx.drawImage(initialBG.pic, 0, 0, canv.width, canv.height); //x,y,xsize,ysize
+                        ctx.drawImage(newGame.pic, 0, canv.height - 105);
+                        //currentState = gameStates.intro;
+                        requestAnimationFrame(draw);
+                        break;
+
+                    case gameStates.intro:
+                        currentState = gameStates.fadingIn;
+                        requestAnimationFrame(draw);
+                        break;
+
+                    case gameStates.fadingIn:
+
+                        ctx.drawImage(background.pic, 0, 0, canv.width, canv.height); //x,y,xsize,ysize
+                        ctx.drawImage(hud.damage[13][0].pic, ((canv.width / 2) - (79 - 37)), ((canv.height) - 38));
+                        ctx.drawImage(hud.damage[13][1].pic, ((canv.width / 2) - (22)), ((canv.height) - (43)));
+                        ctx.drawImage(hud.damage[13][2].pic, ((canv.width / 2) + (94 - 79)), ((canv.height) - 38));
+                        ctx.drawImage(hud.dmgDiv, ((canv.width / 2) - (23)), ((canv.height) - 36));
+                        ctx.drawImage(hud.hud, (canv.width / 2) - (hud.hud.width / 2), canv.height - (hud.hud.height / 2)); //x,y,xsize,ysize
+                        //b.draw();
+                        mainShip.sx++;
+                        requestAnimationFrame(draw);
+                        if (mainShip.sx > 90) {
+                            //window.addEventListener("keydown",keyPush); 
+                            canv.addEventListener('mousemove', mouseMove, false);
+                            canv.addEventListener('mousedown', mouseShoot, false);
+                            canv.addEventListener('mouseleave', mouseLeave, false);
+                            //setInterval(addEnemy,2000);
+                            currentState = gameStates.running;
+                            //game();
+                        }
+                        break;
+
+                    case gameStates.running:
+                        ctx.drawImage(background.pic, 0, 0, canv.width, canv.height); //x,y,xsize,ysize
+                        //b.draw()
+                        ctx.font = "15px Eve";
+                        ctx.fillStyle = "blue";
+                        ctx.fillText('Score: ' + score, 5, 20);
+                        //ammo selection menu
+                        friendlyAmmo2.forEach(function(element, index) {
+                            if (index == 0) {
+                                //ctx.drawImage(element.charge,5,412);
+                                ctx.drawImage(element.charge, 5, 25);
+                            } else {
+                                //ctx.drawImage(element.charge,5,412+(index*25));
+                                ctx.drawImage(element.charge, 5, 25 + (index * 25));
+                            }
+                        });
+
+                        if (now - lastEnemyShipTime >= 2000) {
+                            addEnemy();
+                            lastEnemyShipTime = now;
+                        }
+                        ctx.drawImage(hud.damage[mainShip.health][0].pic, ((canv.width / 2) - (79 - 37)), ((canv.height) - 38));
+                        ctx.drawImage(hud.damage[mainShip.health][1].pic, ((canv.width / 2) - (22)), ((canv.height) - (43)));
+                        ctx.drawImage(hud.damage[mainShip.health][2].pic, ((canv.width / 2) + (94 - 79)), ((canv.height) - 38));
+                        ctx.drawImage(hud.dmgDiv, ((canv.width / 2) - (23)), ((canv.height) - 36));
+
+                        if (mainShip.health == 1) {
+                            ctx.drawImage(hud.skull, (canv.width / 2) - 16, canv.height - (hud.skull.height / 2), 32, 32);
+                        }
+                        ctx.drawImage(hud.hud, (canv.width / 2) - (hud.hud.width / 2), canv.height - (hud.hud.height / 2)); //x,y,xsize,ysize
+                        enemyFleet.forEach(function(enemy) {
+                            if (enemy.x < -56) {
+                                enemyFleet.splice(enemyFleet.indexOf(enemy), 1);
+                                enemy = null;
+                            } else {
+                                enemy.x -= calcMoveDistance(delta, enemy.speed);
+                                enemy.shootNew(now);
+                                ctx.drawImage(enemy.pic, enemy.x, enemy.y, 64, 64); //x,y,xsize,ysize
+                                if (enemy.exploded == false) {
+                                    ctx.fillStyle = "yellow";
+                                    ctx.fillRect(enemy.x + 5, enemy.y + 64, ((enemy.health / enemy.maxHealth)) * 64, 5);
+                                }
+                            }
+                        }, this);
+
+                        ammos.forEach(function(ammoElement) {
+                            if (ammoElement.x < 0 || ammoElement.x > canv.width) {
+                                ammos.splice(ammos.indexOf(ammoElement), 1);
+                                ammoElement = null;
+                            } else {
+                                //console.warn(ammoElement.x);
+                                ammoElement.x += calcMoveDistance(delta, ammoElement.vel * ammoElement.dir); //ammoMove;
+                                //console.info(ammoElement.x);
+                                ctx.drawImage(ammoElement.pic, ammoElement.x, ammoElement.y, 35, 9); //x,y,xsize,ysize
+                            }
+                        }, this);
+
+                        checkContact();
+                        requestAnimationFrame(draw);
+                        break;
+
+                    case gameStates.died:
+                        ctx.drawImage(background.pic, 0, 0, canv.width, canv.height); //x,y,xsize,ysize
+                        finalScore = score;
+                        //score = 0;
+                        canv.className = 'Pointer';
+                        newGame.className = 'visible';
+                        canv.addEventListener('mousedown', newGameClick, false);
+                        currentState = gameStates.end;
+                        requestAnimationFrame(draw);
+                        break;
+
+                    case gameStates.end:
+                        ctx.drawImage(background.pic, 0, 0, canv.width, canv.height); //x,y,xsize,ysize
+                        //clean up
+                        mainShip.sx = 75;
+                        mainShip.sy = canv.height / 2;
+                        //mainShip.scale=2;
+
+                        ctx.drawImage(mainShip.hull, mainShip.sx, 0, (mainShip.width) * mainShip.scale, (mainShip.height) * mainShip.scale);
+                        ctx.drawImage(yipLeve.pic, (canv.width - 256) + 25, canv.height - 256, (yipLeve.pic.width) / 2, (yipLeve.pic.height) / 2);
+
+                        ctx.font = "24px Eve";
+                        ctx.fillStyle = "red";
+                        ctx.fillText('FINAL SCORE', mainShip.sx + (mainShip.width) * mainShip.scale, (canv.height / 10) * 2);
+                        ctx.fillText(finalScore, mainShip.sx + (mainShip.width) * mainShip.scale, (canv.height / 10) * 3);
+                        ctx.fillStyle = "blue";
+                        ctx.font = "12px Eve";
+                        var motd = sessionStatements[finalScore % sessionStatements.length];
+                        ctx.fillText(motd, (canv.width - (motd.length * 12)), (canv.height - 12));
+
+                        ctx.drawImage(newGame.pic, 0, canv.height - 105);
+
+                        requestAnimationFrame(draw);
+                        break;
+
+                    default:
+                        break;
+                }
+                if ((currentState == gameStates.running) || (currentState == gameStates.fadingIn)) {
+                    ctx.drawImage(mainShip.hull, mainShip.sx, mainShip.sy, (mainShip.width), (mainShip.height));
+                }
+                then = now;
+                ctx.restore();
+            };
+
+            /*
+            function keyPush(evt){
+                //console.log("keypressed: " + evt.keyCode );
+                switch(evt.keyCode){
+                    case 37: // key right
+                    mainShip.sx-=5 ;
+                        if ( mainShip.sx < 0 ){ mainShip.sx=-5};
+                        break;
+                    case 38: // key up
+                        mainShip.sy-=5 ;
+                        if ( mainShip.sy < -5 ){ mainShip.sy=-5};
+                        break;
+                    case 39: // key left
+                        mainShip.sx+=5 ;
+                        var w = canv.width;
+                        if ( mainShip.sx+32 > w ){ mainShip.sx=w-30};
+                        break;
+                    case 40: //key down
+                        sy+=5 ;
+                        var h = canv.height;
+                        if ( mainShip.sy+32 > h ){ mainShip.sy=h-30};
+                        break;
+                    case 13: //enter key
+                        x =  mainShip.sx + 20;
+                        y =  mainShip.sy + 16 ;
+                        addShoot( new Shoot(x,y,1,((Math.random()*10)%3)+2,mainShip.charge) );
+                        sounds.pewPew.play();
+                        break;
+                    case 32: //space key
+                        x =  mainShip.sx + 20;
+                        y =  mainShip.sy + 16 ;
+                        addShoot( new Shoot(x,y,1,((Math.random()*10)%3)+2,mainShip.charge) );
+                        sounds.pewPew.play();
+                        break;
+                };
+            };
+            */
+            function mouseMove(evt) {
+                var rect = canv.getBoundingClientRect();
+                var mX = evt.clientX - rect.left;
+                var mY = evt.clientY - rect.top;
+                //mouseX.innerText = mX;
+                //mousey.innerText = mY;
+                if (mX != undefined && mY != undefined) {
+                    mainShip.sx = mX;
+                    mainShip.sy = mY;
+                }
+                //boundaries control
+                if (mX < 75) {
+                    if (canv.className != 'Pointer') {
+                        canv.className = 'Pointer';
+                    }
+                    mainShip.sx = 75;
+                } else {
+                    if (canv.className != 'noPointer') {
+                        canv.className = 'noPointer';
+                    }
+                }
+                if (mX >= canv.width - 32) {
+                    mainShip.sx = canv.width - 32;
+                }
+                if (mY >= canv.height - 32) {
+                    mainShip.sy = canv.height - 32;
+                }
+            };
+
+            function mouseLeave(evt) {
+                var rect = canv.getBoundingClientRect();
+                var mX = evt.clientX - rect.left;
+                var mY = evt.clientY - rect.top;
+                if (mainShip.sx >= rect.right - 32) {
+                    mainShip.sx = rect.right - 32;
+                } else {
+                    if (mainShip.sx <= 32) {
+                        mainShip.sx = 0
+                    }
+                }
+                if (mainShip.sy >= canv.height - 32) {
+                    mainShip.sy = canv.height - 32;
+                } else {
+                    if (mainShip.sy <= 0) {
+                        mainShip.sy = 0
+                    }
+                }
+            };
+
+            function mouseShoot(evt) {
+                //checking if intent was to change the charge
+                var rect = canv.getBoundingClientRect();
+                var mX = evt.clientX - rect.left;
+                var mY = evt.clientY - rect.top;
+                var ammoName;
+                if ((mX <= 75) && (mY <= 110)) {
+                    if ((mY <= 40 && mY >= 25)) {
+                        ammoName = 'em';
+                    } else {
+                        if ((mY <= 65 && mY >= 50)) {
+                            ammoName = 'kn';
+                        } else {
+                            if ((mY <= 90 && mY >= 75)) {
+                                ammoName = 'ex';
+                            } else {
+                                if (mY <= 110) {
+                                    ammoName = 'th';
+                                }
+                            };
+                        };
+                    };
+
+                    var newAmmo = friendlyAmmo2.find(function(element) {
+                        if (element.name == ammoName) {
+                            var src = element.charge
+                            return src;
+                        };
+                    });
+                    mainShip.charge = new Image();
+                    mainShip.charge.src = newAmmo.charge.src;
+                }
+                //else shoot ...
+                else {
+                    x = mainShip.sx + 20;
+                    y = mainShip.sy + 16;
+                    addShoot(new Shoot(x, y, 1, (Math.floor((Math.random() * 100))) + 100, mainShip.charge));
+                    sounds.pewpew.play();
+                }
+            };
+
+            function newGameClick(evt) {
+                var rect = canv.getBoundingClientRect();
+                var mX = evt.clientX - rect.left;
+                var mY = evt.clientY - rect.top;
+                var ammoName;
+                if ((mX <= 75) && (mY >= canv.height - 105)) {
+                    reset();
+                }
+            };
+
+            function ammoSelection(evt) {
+                console.warn('ammo selected');
+                mainShip.charge = evt;
+            };
+
+            var start = function() {
+                b = new BackGround();
+                canv.className = 'Pointer';
+                newGame.className = 'visible';
+                canv.addEventListener('mousedown', newGameClick, false);
+                requestAnimationFrame(draw);
+            };
+
+            return {
+                start: start
+            };
+        };
+    </script>
+</body>
+
+</html

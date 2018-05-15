@@ -1,0 +1,25 @@
+.ammoSelected {
+    border-color:black;
+    border-width: 2px;
+    border-style: solid;
+    border-spacing: 5px;
+    border-radius: 5px;
+}
+.noPointer {
+    cursor: none;
+    
+}
+.Pointer {
+    cursor: initial;
+    
+}
+.visible{
+    visibility: hidden;
+}
+.hidden{
+    visibility: visible;
+}
+@font-face {
+    font-family: 'Eve';
+    src: url('eve.ttf');
+}
